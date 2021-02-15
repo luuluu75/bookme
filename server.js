@@ -8,27 +8,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const tables = [
-  {
-    tableNumber: 'tableOne',
-    reservationName: ''
-  },
-  {
-    tableNumber: 'tableTwo',
-    reservationName: ''
-  },
-  {
-    tableNumber: 'tableThree',
-    reservationName: ''
-  },
-  {
-    tableNumber: 'tableFour',
-    reservationName: ''
-  },
-  {
-    tableNumber: 'tableFive',
-    reservationName: ''
-  }
+    {
+        tableNumber: 'tableOne',
+        reservationName: ''
+    },
+    {
+        tableNumber: 'tableTwo',
+        reservationName: ''
+    },
+    {
+        tableNumber: 'tableThree',
+        reservationName: ''
+    },
+    {
+        tableNumber: 'tableFour',
+        reservationName: ''
+    },
+    {
+        tableNumber: 'tableFive',
+        reservationName: ''
+    }
 ];
+
+const waitlist = []
 
 // ROUTES
 
@@ -43,13 +45,18 @@ app.get('/api/tables', (req, res) => res.json(tables));
 
 // Makes new reservations
 app.post('/api/tables', (req, res) => {
-  const newTable = req.body;
+    const newReservation = req.body;
 
-  newTable.routeName = newTable.reservationName.replace(/\s+/g, '').toLowerCase();
-  console.log(newTable);
+    newReservation.routeName = newReservation.reservationName.replace(/\s+/g, '').toLowerCase();
+    console.log(newReservation);
 
-  tables.push(newTable);
-  res.json(newTable);
+    if (tables.length < 5) {
+        tables.push(newReservation);
+    } else {
+        waitlist.push(newReservation);
+    }
+
+    res.json(newReservation);
 });
 
 // Starts server to begin listening

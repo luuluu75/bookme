@@ -2,28 +2,12 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const tables = [
-    {
-        tableNumber: 'tableOne',
-    },
-    {
-        tableNumber: 'tableTwo',
-    },
-    {
-        tableNumber: 'tableThree',
-    },
-    {
-        tableNumber: 'tableFour',
-    },
-    {
-        tableNumber: 'tableFive',
-    }
-];
+const tables = [];
 
 const waitlist = []
 
@@ -38,6 +22,9 @@ app.get('/tables', (req, res) => res.sendFile(path.join(__dirname, '/Assets/tabl
 // Displays tables as JSON object 
 app.get('/api/tables', (req, res) => res.json(tables));
 
+app.get('/api/waitlist', (req, res) => res.json(waitlist));
+
+
 // Makes new reservations
 app.post('/api/tables', (req, res) => {
     const newReservation = req.body;
@@ -47,8 +34,10 @@ app.post('/api/tables', (req, res) => {
 
     if (tables.length < 5) {
         tables.push(newReservation);
+        alert("You got a table!")
     } else {
         waitlist.push(newReservation);
+        alert("You're on the waitlist.")
     }
 
     res.json(newReservation);

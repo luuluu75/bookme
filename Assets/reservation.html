@@ -62,6 +62,42 @@
 	      </div>
 	    </footer>
 	</div>
-    <script src="../script.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+        $(document).ready(function () {
+            $('#reserve_submit').addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Question: What does this code do?
+                let resName = document.getElementById('reserve_name').value.trim();
+                let resPhone = document.getElementById('reserve_phone').value.trim();
+                let resId = document.getElementById('reserve_uniqueId').value.trim();
+
+                let newReservation = {
+                    tableNumber: "",
+                    resName: resName,
+                    resPhone: resPhone,
+                    resId: resId,
+                };
+
+                console.log(newReservation)
+
+                fetch('/api/tables', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(newReservation),
+                })
+                    .then((response) => response.json())
+                    .then((data) => { // data is the res from server.js POST request
+                        console.log('reservation.html', data);
+                        alert(`Adding character: ${data.name}`);
+                    })
+                    .catch((error) => {
+                        console.error('Error:', error);
+                    });
+                })
+            })
+    </script>
 </body>
 </html>

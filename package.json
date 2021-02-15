@@ -1,0 +1,23 @@
+{
+  "name": "hot-restaurant",
+  "version": "1.0.0",
+  "description": "Application for booking tables at the exclusive 'Hot Restaurant', which only has five tables.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luuluu75/bookme.git"
+  },
+  "author": "Thu Van Luu, Jessie Ng & Jessica Hong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luuluu75/bookme/issues"
+  },
+  "homepage": "https://github.com/luuluu75/bookme#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

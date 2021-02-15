@@ -45,7 +45,7 @@ app.get('/api/tables', (req, res) => res.json(tables));
 app.post('/api/tables', (req, res) => {
   const newTable = req.body;
 
-  newCharacter.routeName = newTable.reservationName.replace(/\s+/g, '').toLowerCase();
+  newTable.routeName = newTable.reservationName.replace(/\s+/g, '').toLowerCase();
   console.log(newTable);
 
   tables.push(newTable);

@@ -10,23 +10,18 @@ app.use(express.json());
 const tables = [
     {
         tableNumber: 'tableOne',
-        reservationName: ''
     },
     {
         tableNumber: 'tableTwo',
-        reservationName: ''
     },
     {
         tableNumber: 'tableThree',
-        reservationName: ''
     },
     {
         tableNumber: 'tableFour',
-        reservationName: ''
     },
     {
         tableNumber: 'tableFive',
-        reservationName: ''
     }
 ];
 
@@ -47,7 +42,7 @@ app.get('/api/tables', (req, res) => res.json(tables));
 app.post('/api/tables', (req, res) => {
     const newReservation = req.body;
 
-    newReservation.routeName = newReservation.reservationName.replace(/\s+/g, '').toLowerCase();
+    newReservation.routeName = newReservation.resName.replace(/\s+/g, '').toLowerCase();
     console.log(newReservation);
 
     if (tables.length < 5) {
